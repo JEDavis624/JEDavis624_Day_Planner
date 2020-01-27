@@ -46,6 +46,47 @@ $(document).ready(function() {
     plannerDiv.empty();
   
     if (test) { console.log("current time",nowHour12); }
+
+     // build calendar by row for fix set of hours
+     for (let hour = 9; hour <= 17; hour++) {
+        // index for array use offset from hour
+        let index = hour - 9;
+        
+        // build row components
+        let $rowDiv = $('<div>');
+        $rowDiv.addClass('row');
+        $rowDiv.addClass('plannerRow');
+        $rowDiv.attr('hour-index',hour);
+      
+        // Start building Time box portion of row
+        let $col2TimeDiv = $('<div>');
+        $col2TimeDiv.addClass('col-md-2');
+      
+        // create timeBox element (contains time)
+        const $timeBoxSpn = $('<span>');
+        // can use this to get value
+        $timeBoxSpn.attr('class','timeBox');
+        
+        // format hours for display
+        let displayHour = 0;
+        let ampm = "";
+        if (hour > 12) { 
+          displayHour = hour - 12;
+          ampm = "pm";
+        } else {
+          displayHour = hour;
+          ampm = "am";
+        }
+        
+        // populate timeBox with time
+        $timeBoxSpn.text(`${displayHour} ${ampm}`);
+    
+        // insert into col inset into timebox
+        $rowDiv.append($col2TimeDiv);
+        $col2TimeDiv.append($timeBoxSpn);
+        // STOP building Time box portion of row
+
+        
   });
 
 
