@@ -53,19 +53,19 @@ $(document).ready(function() {
         let index = hour - 9;
         
         // build row components
-        let $rowDiv = $('<div>');
-        $rowDiv.addClass('row');
-        $rowDiv.addClass('plannerRow');
-        $rowDiv.attr('hour-index',hour);
+        let rowDiv = $('<div>');
+        rowDiv.addClass('row');
+        rowDiv.addClass('plannerRow');
+        rowDiv.attr('hour-index',hour);
       
         // Start building Time box portion of row
-        let $col2TimeDiv = $('<div>');
-        $col2TimeDiv.addClass('col-md-2');
+        let col2TimeDiv = $('<div>');
+        col2TimeDiv.addClass('col-md-2');
       
         // create timeBox element (contains time)
-        const $timeBoxSpn = $('<span>');
+        const timeBoxSpn = $('<span>');
         // can use this to get value
-        $timeBoxSpn.attr('class','timeBox');
+        timeBoxSpn.attr('class','timeBox');
         
         // format hours for display
         let displayHour = 0;
@@ -79,14 +79,35 @@ $(document).ready(function() {
         }
         
         // populate timeBox with time
-        $timeBoxSpn.text(`${displayHour} ${ampm}`);
+        timeBoxSpn.text(`${displayHour} ${ampm}`);
     
         // insert into col inset into timebox
-        $rowDiv.append($col2TimeDiv);
-        $col2TimeDiv.append($timeBoxSpn);
+        rowDiv.append(col2TimeDiv);
+        col2TimeDiv.append(timeBoxSpn);
         // STOP building Time box portion of row
 
-        
+        // START building input portion of row
+      // build row components
+      let dailyPlanSpn = $('<input>');
+  
+      dailyPlanSpn.attr('id',`input-${index}`);
+      dailyPlanSpn.attr('hour-index',index);
+      dailyPlanSpn.attr('type','text');
+      dailyPlanSpn.attr('class','dailyPlan');
+  
+      // access index from data array for hour 
+      dailyPlanSpn.val( planTextArr[index] );
+      
+      // create col to control width
+      let col9IptDiv = $('<div>');
+      col9IptDiv.addClass('col-md-9');
+  
+      // add col width and row component to row
+      rowDiv.append(col9IptDiv);
+      col9IptDiv.append(dailyPlanSpn);
+      // STOP building Time box portion of row
+
+
   });
 
 
