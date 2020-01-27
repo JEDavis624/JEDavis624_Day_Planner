@@ -107,6 +107,45 @@ $(document).ready(function() {
       col9IptDiv.append(dailyPlanSpn);
       // STOP building Time box portion of row
 
+       // START building save portion of row
+       let col1SaveDiv = $('<div>');
+       col1SaveDiv.addClass('col-md-1');
+   
+       let saveBtn = $('<i>');
+       saveBtn.attr('id',`saveid-${index}`);
+       saveBtn.attr('save-id',index);
+       saveBtn.attr('class',"far fa-save saveIcon");
+       
+       // add col width and row component to row
+       rowDiv.append(col1SaveDiv);
+       col1SaveDiv.append(saveBtn);
+       // STOP building save portion of row
+
+       // set row color based on time
+      updateRowColor(rowDiv, hour);
+      
+      // add row to planner container
+      plannerDiv.append(rowDiv);
+    };
+  
+    // function to update row color
+    function updateRowColor (hourRow,hour) { 
+  
+      if (test) { console.log("rowColor ",nowHour24, hour); }
+  
+      if ( hour < nowHour24) {
+        // $hourRow.css('')
+        if (test) { console.log("lessThan"); }
+        hourRow.css(".past")
+      } else if ( hour > nowHour24) {
+        if (test) { console.log("greaterthan"); }
+        hourRow.css(".future")
+      } else {
+        if (test) { console.log("equal"); }
+        hourRow.css(".present")
+      }
+    };
+
 
   });
 
