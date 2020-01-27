@@ -145,7 +145,43 @@ $(document).ready(function() {
         hourRow.css(".present")
       }
     };
-
+      // saves to local storage
+    // conclick function to listen for user clicks on plan area
+    $(document).on('click','i', function(event) {
+        event.preventDefault();  
+    
+        if (test) { console.log('click pta before '+ planTextArr); }
+    
+        let $index = $(this).attr('save-id');
+    
+        let inputId = '#input-'+$index;
+        let $value = $(inputId).val();
+    
+        planTextArr[$index] = $value;
+    
+    
+        if (test) { console.log('value ', $value); }
+        if (test) { console.log('index ', $index); }
+        if (test) { console.log('click pta after '+ planTextArr); }
+    
+        // remove shawdow pulse class
+        $(`#saveid-${$index}`).removeClass('shadowPulse');
+        localStorage.setItem("storedPlans", JSON.stringify(planTextArr));
+      });  
+      
+      // function to color save button on change of input
+      $(document).on('change','input', function(event) {
+        event.preventDefault();  
+        if (test) { console.log('onChange'); }
+        if (test) { console.log('id', $(this).attr('hour-index')); }
+    
+        // neeed to check for save button
+    
+        let i = $(this).attr('hour-index');
+    
+        // add shawdow pulse class
+        $(`#saveid-${i}`).addClass('shadowPulse');
+      });
 
   });
 
