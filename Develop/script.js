@@ -136,7 +136,7 @@ $(document).ready(function() {
       if ( hour < nowHour24) {
         // $hourRow.css('')
         if (test) { console.log("lessThan"); }
-        hourRow.css(".past")
+        hourRow.css("class","past")
       } else if ( hour > nowHour24) {
         if (test) { console.log("greaterthan"); }
         hourRow.css(".future")
@@ -164,7 +164,7 @@ $(document).ready(function() {
         if (test) { console.log('index ', $index); }
         if (test) { console.log('click pta after '+ planTextArr); }
     
-        // remove shawdow pulse class
+        // remove shadow pulse class
         $(`#saveid-${$index}`).removeClass('shadowPulse');
         localStorage.setItem("storedPlans", JSON.stringify(planTextArr));
       });  
@@ -179,7 +179,7 @@ $(document).ready(function() {
     
         let i = $(this).attr('hour-index');
     
-        // add shawdow pulse class
+        // add shadow pulse class
         $(`#saveid-${i}`).addClass('shadowPulse');
       });
 
